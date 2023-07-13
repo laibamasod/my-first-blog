@@ -1,23 +1,16 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Django Girls blog</title>
-    </head>
-    <body>
-        <header>
-            <h1><a href="/">Laiba's Blog</a></h1>
-        </header>
+{% extends 'blog/base.html' %}
 
-        {% for post in posts %}
-        <article>
-            <br> 
-            <h2><a href="">{{ post.title }}</a></h2>
-            <time>Published: {{ post.published_date }}</time>
-            <p>{{ post.text|linebreaksbr }}</p>
-            <br>
-        </article>
-    
-    {% endfor %}
-       
-    </body>
-</html>
+
+{% block content %}
+   {% for post in posts %}
+      <article>
+       <br>
+      <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+      <time>Published: {{ post.published_date }}</time>
+       <p>{{ post.text|linebreaksbr }}</p>
+       <br>
+      </article>
+<!-- http://127.0.0.1:8000/post/5/ -->
+<!-- get_object_or_404-->
+   {% endfor %}
+{% endblock %}
